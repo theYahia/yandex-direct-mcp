@@ -1,7 +1,7 @@
 {
   "name": "@theyahia/yandex-direct-mcp",
-  "version": "1.0.1",
-  "description": "MCP server for Yandex.Direct API — campaigns, ads, statistics, keywords. Bearer token auth.",
+  "version": "3.0.0",
+  "description": "MCP server for Yandex.Direct API v5 — 12 tools: campaigns, ad groups, ads, keywords, statistics, account. Bearer token auth.",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
@@ -17,6 +17,8 @@
     "build": "tsc",
     "dev": "tsx src/index.ts",
     "start": "node dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
@@ -26,7 +28,8 @@
   "devDependencies": {
     "@types/node": "^22.0.0",
     "tsx": "^4.19.0",
-    "typescript": "^5.7.0"
+    "typescript": "^5.7.0",
+    "vitest": "^3.1.0"
   },
   "publishConfig": {
     "access": "public"
@@ -48,7 +51,9 @@
     "direct",
     "advertising",
     "ppc",
-    "ads"
+    "ads",
+    "marketing",
+    "typescript"
   ],
   "license": "MIT",
   "repository": {

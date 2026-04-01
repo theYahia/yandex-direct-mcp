@@ -3,15 +3,27 @@ export interface DirectCampaign {
   Name: string;
   Status: string;
   State: string;
-  DailyBudget?: { Amount: number };
+  DailyBudget?: { Amount: number; Mode: string };
+  StartDate?: string;
+  Type?: string;
+}
+
+export interface DirectAdGroup {
+  Id: number;
+  Name: string;
+  CampaignId: number;
+  RegionIds: number[];
+  Status: string;
+  Type: string;
 }
 
 export interface DirectAd {
   Id: number;
   CampaignId: number;
+  AdGroupId: number;
   State: string;
   Status: string;
-  TextAd?: { Title: string; Text: string; Href: string };
+  TextAd?: { Title: string; Title2?: string; Text: string; Href: string };
 }
 
 export interface DirectKeyword {

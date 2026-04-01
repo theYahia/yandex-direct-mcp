@@ -1,4 +1,5 @@
 const BASE_URL = "https://api.direct.yandex.com/json/v5/";
+const REPORT_URL = "https://api.direct.yandex.com/json/v5/reports";
 const TIMEOUT = 15_000;
 const MAX_RETRIES = 3;
 
@@ -55,4 +56,19 @@ export async function apiPost(service: string, method: string, params: Record<st
     body: JSON.stringify({ method, params }),
   });
   return response.json();
+}
+
+export async function apiReport(params: Record<string, unknown>): Promise<string> {
+  const response = await fetchWithRetry(REPORT_URL, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+      "Content-Type": "application/json",
+      "Accept-Language": "ru",
+      processingMode: "auto",
+      returnMoneyInMicros: "false",
+    },
+    body: JSON.stringify({ params }),
+  });
+  return response.text();
 }
