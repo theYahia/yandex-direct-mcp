@@ -1,7 +1,7 @@
 {
   "name": "@theyahia/yandex-direct-mcp",
-  "version": "3.0.0",
-  "description": "MCP server for Yandex.Direct API v5 — 12 tools: campaigns, ad groups, ads, keywords, statistics, account. Bearer token auth.",
+  "version": "3.0.1",
+  "description": "MCP server for Yandex Direct — PPC campaigns, ads, keywords, statistics (Russia)",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
@@ -53,7 +53,9 @@
     "ppc",
     "ads",
     "marketing",
-    "typescript"
+    "typescript",
+    "yandex-direct",
+    "api"
   ],
   "license": "MIT",
   "repository": {
