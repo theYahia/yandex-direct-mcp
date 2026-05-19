@@ -1,3 +1,5 @@
+> 📦 Part of **[WWmcp — Emerging Markets MCP](https://github.com/theYahia/WWmcp)** — 114 MCP servers for non-Western APIs (Brazil/MENA/Gulf/SE Asia/Africa/CIS).
+
 # @theyahia/yandex-direct-mcp
 
 MCP-сервер для API Яндекс.Директ v5 — кампании, группы объявлений, объявления, ключевые слова, статистика, аккаунт. 12 инструментов.
@@ -61,6 +63,19 @@ claude mcp add yandex-direct -e YANDEX_DIRECT_TOKEN=ваш_токен -- npx -y 
 Покажи все группы объявлений кампании 12345
 ```
 
+## 🚀 Demo prompts
+
+> **Use case (RU):** "Покажи топ-5 кампаний Яндекс.Директ по ROI за последние 7 дней"
+
+🤖 **Pairs well with:**
+- [`@theyahia/yandex-metrika-mcp`](https://github.com/theYahia/yandex-metrika-mcp)
+- [`@theyahia/appmetrica-mcp`](https://github.com/theYahia/appmetrica-mcp)
+- [`@theyahia/roistat-mcp`](https://github.com/theYahia/roistat-mcp)
+
 ## Лицензия
 
 MIT
+
+---
+
+⭐ **Star if you build with Yandex Direct** — helps other devs find this server.
