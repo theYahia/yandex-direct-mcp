@@ -48,6 +48,7 @@ describe("list_campaigns", () => {
 
     const body = JSON.parse(mockFetch.mock.calls[0][1].body);
     expect(body.params.SelectionCriteria.Statuses).toEqual(["DRAFT"]);
+    expect(body.params.FieldNames).toContain("NegativeKeywords");
   });
 });
 
@@ -66,6 +67,7 @@ describe("get_campaign", () => {
 
     const body = JSON.parse(mockFetch.mock.calls[0][1].body);
     expect(body.params.SelectionCriteria.Ids).toEqual([42]);
+    expect(body.params.FieldNames).toContain("NegativeKeywords");
   });
 });
 
@@ -108,6 +110,7 @@ describe("list_ad_groups", () => {
 
     const body = JSON.parse(mockFetch.mock.calls[0][1].body);
     expect(body.params.SelectionCriteria.CampaignIds).toEqual([1, 2]);
+    expect(body.params.FieldNames).toContain("NegativeKeywords");
   });
 });
 

@@ -17,7 +17,7 @@ export async function handleListCampaigns(params: z.infer<typeof listCampaignsSc
 
   const data = await apiPost("campaigns", "get", {
     SelectionCriteria: selectionCriteria,
-    FieldNames: ["Id", "Name", "Status", "State", "DailyBudget", "StartDate", "Type", "Statistics"],
+    FieldNames: ["Id", "Name", "Status", "State", "DailyBudget", "StartDate", "Type", "Statistics", "NegativeKeywords"],
   });
   return JSON.stringify(data, null, 2);
 }
@@ -29,7 +29,7 @@ export const getCampaignSchema = z.object({
 export async function handleGetCampaign(params: z.infer<typeof getCampaignSchema>): Promise<string> {
   const data = await apiPost("campaigns", "get", {
     SelectionCriteria: { Ids: [params.campaign_id] },
-    FieldNames: ["Id", "Name", "Status", "State", "DailyBudget", "StartDate", "EndDate", "Type", "Statistics"],
+    FieldNames: ["Id", "Name", "Status", "State", "DailyBudget", "StartDate", "EndDate", "Type", "Statistics", "NegativeKeywords"],
   });
   return JSON.stringify(data, null, 2);
 }

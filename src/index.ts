@@ -16,7 +16,7 @@ const server = new McpServer({
 
 server.tool(
   "list_campaigns",
-  "Список рекламных кампаний Яндекс.Директ с фильтрацией по статусу и типу.",
+  "Список рекламных кампаний Яндекс.Директ с фильтрацией по статусу и типу. Включает минус-фразы кампаний.",
   listCampaignsSchema.shape,
   async (params) => ({
     content: [{ type: "text", text: await handleListCampaigns(params) }],
@@ -25,7 +25,7 @@ server.tool(
 
 server.tool(
   "get_campaign",
-  "Детальная информация о кампании по ID: бюджет, статус, даты, статистика.",
+  "Детальная информация о кампании по ID: бюджет, статус, даты, статистика, минус-фразы.",
   getCampaignSchema.shape,
   async (params) => ({
     content: [{ type: "text", text: await handleGetCampaign(params) }],
@@ -52,7 +52,7 @@ server.tool(
 
 server.tool(
   "list_ad_groups",
-  "Группы объявлений выбранных кампаний: названия, регионы, статусы.",
+  "Группы объявлений выбранных кампаний: названия, регионы, статусы, минус-фразы.",
   listAdGroupsSchema.shape,
   async (params) => ({
     content: [{ type: "text", text: await handleListAdGroups(params) }],

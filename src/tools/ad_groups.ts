@@ -8,7 +8,7 @@ export const listAdGroupsSchema = z.object({
 export async function handleListAdGroups(params: z.infer<typeof listAdGroupsSchema>): Promise<string> {
   const data = await apiPost("adgroups", "get", {
     SelectionCriteria: { CampaignIds: params.campaign_ids },
-    FieldNames: ["Id", "Name", "CampaignId", "RegionIds", "Status", "Type"],
+    FieldNames: ["Id", "Name", "CampaignId", "RegionIds", "Status", "Type", "NegativeKeywords"],
   });
   return JSON.stringify(data, null, 2);
 }
