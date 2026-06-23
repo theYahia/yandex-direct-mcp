@@ -1,17 +1,22 @@
-import { apiPost } from "../client.js";
+import { z } from "zod";
+import { apiV4 } from "../client.js";
+import { formatResult } from "../format.js";
 
-export async function handleGetAccountBalance(): Promise<string> {
-  const data = await apiPost("changes", "checkDictionaries", {});
-  // Account balance is available via the Accounts service
-  const balanceData = await apiPost("agencyclients", "get", {
-    SelectionCriteria: {},
-    FieldNames: ["Login", "AccountQuality"],
-  }).catch(() => null);
+// Баланс аккаунта доступен ТОЛЬКО через Live API v4 (AccountManagement.Get), не в v5.
+// Возвращает Amount, AmountAvailableForTransfer, Currency, AccountID, Login.
+export const getAccountBalanceSchema = z.object({
+  logins: z.array(z.string()).optional().describe("Логины аккаунтов (для агентств). По умолчанию — аккаунт токена (или YANDEX_DIRECT_LOGIN)."),
+});
 
-  // Fallback: use the simpler endpoint
-  const result: Record<string, unknown> = { dictionaries: data };
-  if (balanceData) {
-    result.accounts = balanceData;
+export async function handleGetAccountBalance(params: z.infer<typeof getAccountBalanceSchema> = {}): Promise<string> {
+  const param: Record<string, unknown> = { Action: "Get" };
+  const logins = params.logins
+    ?? (process.env.YANDEX_DIRECT_LOGIN ? [process.env.YANDEX_DIRECT_LOGIN] : undefined);
+  if (logins && logins.length > 0) {
+    param.SelectionCriteria = { Logins: logins };
   }
-  return JSON.stringify(result, null, 2);
+
+  const data = await apiV4("AccountManagement", param);
+  // money:false — в Live v4 Amount уже в валюте аккаунта, конверсия микро→рубли НЕ нужна.
+  return formatResult(data, { money: false });
 }
